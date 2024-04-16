@@ -4,6 +4,13 @@ const require = createRequire(import.meta.url);
 const express = require("express");
 const app = express();
 
+// Configuración de CORS
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*"); // Permite cualquier origen. En produccion colocar asi: res.header("Access-Control-Allow-Origin", "http://tu-dominio.com"); 
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+
 var admin = require('firebase-admin')
 const serviceAccount = require('./firebase-adminsdk.json');
 
